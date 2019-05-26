@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AppEffects } from './app.effects';
 import { MoviesApiService } from './shared/services/movies-api.service';
 import { PopupComponent } from './components/popup/popup.component';
+import { AlphaNumPipe } from './shared/pipes/alpha-num-pipe.';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PopupComponent } from './components/popup/popup.component';
     AppComponent,
     MoviesComponent,
     PopupComponent,
+    AlphaNumPipe,
   ],
   imports: [
     BrowserModule,

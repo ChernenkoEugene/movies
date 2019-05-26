@@ -21,17 +21,16 @@ export class MoviesComponent implements OnInit {
   private popupTitle: string;
   private PopupModes = PopupModes;
   private mockMovie = mockMovie;
-  private films;
+
 
   constructor(public store: Store<fromRoot.State>) {}
 
   ngOnInit() {
     this.store.dispatch(new MoviesApi.RequestMovies());
-    this.movies$.subscribe(films => this.films = films);
+    this.movies$.subscribe();
   }
 
   private openPopup(movie: {}, mode) {
-    console.log(this.films);
     this.editMovie = Object.assign({}, movie);
     this.popupTitle = mode.title;
     this.popup = {

@@ -1,9 +1,9 @@
 <div class="movies">
   <ul class="movies-list">
-    <li *ngFor="let movie of films">
+    <li *ngFor="let movie of movies$ | async">
       <div class="movie-field">
         <span class="movie-field-title">Title</span>
-        <span class="movie-field-value">{{ movie.Title }}</span>
+        <span class="movie-field-value">{{ movie.Title | titlecase | alphaNumPipe }}</span>
       </div>
       <div class="movie-field">
         <span class="movie-field-title">Year</span>
@@ -15,11 +15,11 @@
       </div>
       <div class="movie-field">
         <span class="movie-field-title">Genre</span>
-        <span class="movie-field-value">{{ movie.Genre }}</span>
+        <span class="movie-field-value">{{ movie.Genre | titlecase | alphaNumPipe  }}</span>
       </div>
       <div class="movie-field">
         <span class="movie-field-title">Director</span>
-        <span class="movie-field-value">{{ movie.Director }}</span>
+        <span class="movie-field-value">{{ movie.Director | titlecase | alphaNumPipe  }}</span>
       </div>
       <div class="movie-btns">
         <button (click)="openPopup(movie, PopupModes.EDIT)">edit</button>
