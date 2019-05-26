@@ -1,0 +1,27 @@
+<div class="popup">
+  <h2>{{popupTitle}}</h2>
+  <form *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT" class="popup-form">
+    <label>
+      <span>Title</span>
+      <input type="text" [(ngModel)]="editMovie.Title" name="title">
+    </label>
+    <label>
+      <span>Year</span>
+      <input type="text" [(ngModel)]="editMovie.Year" name="year">
+    </label>
+    <label>
+      <span>Runtime</span>
+      <input type="text" [(ngModel)]="editMovie.Runtime" name="runtime">
+    </label>
+    <label>
+      <span>Genre</span>
+      <input type="text" [(ngModel)]="editMovie.Genre" name="genre">
+    </label>
+    <label>
+      <span>Director</span>
+      <input type="text" [(ngModel)]="editMovie.Director" name="director">
+    </label>
+  </form>
+  <button class="popup-submit" (click)="submit()">Submit</button>
+  <button class="popup-cancel" (click)="cancel()">Cancel</button>
+</div>

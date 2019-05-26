@@ -1,0 +1,34 @@
+<div class="movies">
+  <ul class="movies-list">
+    <li *ngFor="let movie of films">
+      <div class="movie-field">
+        <span class="movie-field-title">Title</span>
+        <span class="movie-field-value">{{ movie.Title }}</span>
+      </div>
+      <div class="movie-field">
+        <span class="movie-field-title">Year</span>
+        <span class="movie-field-value">{{ movie.Year }}</span>
+      </div>
+      <div class="movie-field">
+        <span class="movie-field-title">Runtime</span>
+        <span class="movie-field-value">{{ movie.Runtime }}</span>
+      </div>
+      <div class="movie-field">
+        <span class="movie-field-title">Genre</span>
+        <span class="movie-field-value">{{ movie.Genre }}</span>
+      </div>
+      <div class="movie-field">
+        <span class="movie-field-title">Director</span>
+        <span class="movie-field-value">{{ movie.Director }}</span>
+      </div>
+      <div class="movie-btns">
+        <button (click)="openPopup(movie, PopupModes.EDIT)">edit</button>
+        <button (click)="openPopup(movie, PopupModes.DELETE)">delete</button>
+      </div>
+    </li>
+  </ul>
+  <button (click)="openPopup(mockMovie, PopupModes.ADD)">add</button>
+</div>
+
+<app-popup *ngIf="popup && popup.open" [editMovie]="editMovie" [popup]="popup" [popupTitle]="popupTitle">
+</app-popup>
