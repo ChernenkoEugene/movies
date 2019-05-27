@@ -1,27 +1,36 @@
-<div class="popup">
-  <h2>{{popupTitle}}</h2>
-  <form *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT" class="popup-form">
-    <label>
-      <span>Title</span>
-      <input type="text" [(ngModel)]="editMovie.Title" name="title">
-    </label>
-    <label>
-      <span>Year</span>
-      <input type="text" [(ngModel)]="editMovie.Year" name="year">
-    </label>
-    <label>
-      <span>Runtime</span>
-      <input type="text" [(ngModel)]="editMovie.Runtime" name="runtime">
-    </label>
-    <label>
-      <span>Genre</span>
-      <input type="text" [(ngModel)]="editMovie.Genre" name="genre">
-    </label>
-    <label>
-      <span>Director</span>
-      <input type="text" [(ngModel)]="editMovie.Director" name="director">
-    </label>
-  </form>
-  <button class="popup-submit" (click)="submit()">Submit</button>
-  <button class="popup-cancel" (click)="cancel()">Cancel</button>
+<div class="popup-bg">
+  <div class="popup">
+    <h2>{{popupTitle}}</h2>
+    <form *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT" class="popup-form">
+      <label>
+        <span>Title</span>
+        <input type="text" [(ngModel)]="editMovie.Title" name="title" required #title="ngModel">
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+          <div *ngIf="title.errors.required">
+            Name is required.
+          </div>
+        </div>
+      </label>
+      <label>
+        <span>Year</span>
+        <input type="text" [(ngModel)]="editMovie.Year" name="year" required minlength="4">
+      </label>
+      <label>
+        <span>Runtime</span>
+        <input type="text" [(ngModel)]="editMovie.Runtime" name="runtime" required>
+      </label>
+      <label>
+        <span>Genre</span>
+        <input type="text" [(ngModel)]="editMovie.Genre" name="genre" required>
+      </label>
+      <label>
+        <span>Director</span>
+        <input type="text" [(ngModel)]="editMovie.Director" name="director" required>
+      </label>
+    </form>
+    <div class="btns">
+      <button class="popup-submit" (click)="submit()" class="button button-primary">Submit</button>
+      <button class="popup-cancel" (click)="cancel()" class="button button-primary">Cancel</button>
+    </div>
+  </div>
 </div>

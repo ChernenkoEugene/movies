@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AlphaNumPipe implements PipeTransform {
 
   transform(value: string): string {
-    return value.replace(/[\W_]/g, '');
+    return value.replace(/[^\w\s\:\-\,\'\é]/gi, '');
   }
 
 }

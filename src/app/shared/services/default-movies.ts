@@ -1,6 +1,5 @@
 
 export const DEFAULT_MOVIES = [
-  'Taxi',
   'Blade',
   'Titanic',
   'The Shawshank Redemption',
@@ -9,6 +8,7 @@ export const DEFAULT_MOVIES = [
   'Inception', 'Léon',
   'The Green Mile',
   'The Pianist',
-  'Star Wars'
+  'The Silence of the Lambs',
+  'Interstellar'
 ];
 
