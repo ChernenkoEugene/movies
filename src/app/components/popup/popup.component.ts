@@ -5,7 +5,7 @@ import * as moviesApi from '../../actions/movies-api';
 import * as fromRoot from '../../reducers/index';
 import { Popup } from './popup';
 import { PopupModes } from '../popup/popup-modes';
-
+import { TitlesValidatorDirective as TitlesValidator } from '../../shared/directives/titles-validator.directive';
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
@@ -23,12 +23,15 @@ export class PopupComponent implements OnInit {
   @Input()
   popupTitle: string;
 
+  @Input()
+  existingTitles: [];
+
   constructor(public store: Store<fromRoot.State>) {}
 
   ngOnInit() {
   }
 
-  private submit() {
+  private save() {
     if (this.popup.mode === this.PopupModes.ADD) {
       this.addNewMovie(this.editMovie);
     }

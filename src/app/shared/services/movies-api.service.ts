@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError, of, from } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { DEFAULT_MOVIES } from './default-movies';
@@ -10,11 +10,9 @@ import { API_CONFIG } from './api-config';
   providedIn: 'root'
 })
 export class MoviesApiService {
-  private moviesList = [];
+  // private moviesList = [];
 
-  constructor(private http: HttpClient) {
-    DEFAULT_MOVIES.forEach(movie => this.getMovieByTitle(movie).subscribe(item => this.moviesList.push(item)));
-   }
+  constructor(private http: HttpClient) { }
 
   private buildRequestUrl(searchData: string) {
     searchData = searchData.trim().split(' ').join('+');
@@ -22,14 +20,17 @@ export class MoviesApiService {
   }
 
   public getDefaultMoviesList(): Observable<{}[]> {
-    return of(this.moviesList);
+    return from(Promise.all(
+      DEFAULT_MOVIES.map(title => this.getMovieByTitle(title))
+    ));
   }
 
-  public getMovieByTitle(movieTitle: string): Observable<{}> {
-    return this.http.get<{}>(this.buildRequestUrl(movieTitle))
+ public async getMovieByTitle(movieTitle: string): Promise<{}> {
+    const response = await this.http.get<{}>(this.buildRequestUrl(movieTitle))
       .pipe(retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
-      );
+      ).toPromise();
+    return response as {};
   }
 
   public addNewMovie(movie): Observable<{}> {

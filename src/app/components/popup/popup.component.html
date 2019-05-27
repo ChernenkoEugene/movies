@@ -1,36 +1,67 @@
 <div class="popup-bg">
   <div class="popup">
     <h2>{{popupTitle}}</h2>
-    <form *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT" class="popup-form">
-      <label>
-        <span>Title</span>
-        <input type="text" [(ngModel)]="editMovie.Title" name="title" required #title="ngModel">
-        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
-          <div *ngIf="title.errors.required">
-            Name is required.
-          </div>
-        </div>
-      </label>
-      <label>
-        <span>Year</span>
-        <input type="text" [(ngModel)]="editMovie.Year" name="year" required minlength="4">
-      </label>
-      <label>
-        <span>Runtime</span>
-        <input type="text" [(ngModel)]="editMovie.Runtime" name="runtime" required>
-      </label>
-      <label>
-        <span>Genre</span>
-        <input type="text" [(ngModel)]="editMovie.Genre" name="genre" required>
-      </label>
-      <label>
-        <span>Director</span>
-        <input type="text" [(ngModel)]="editMovie.Director" name="director" required>
-      </label>
+    <form  class="popup-form" #moviesForm="ngForm" novalidate>
+      <div class="form-wrp" *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT">
+          <label>
+              <span>Title</span>
+              <input type="text" [(ngModel)]="editMovie.Title" name="title" [appTitlesValidator]="existingTitles" required #title="ngModel">
+              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error-message">
+                <div *ngIf="title.errors.required">
+                  Title is required.
+                </div>
+                <div *ngIf="!title.errors.required && !title.valid">
+                  This title already exists.
+                </div>
+              </div>
+            </label>
+            <label>
+              <span>Year</span>
+              <input type="text" [(ngModel)]="editMovie.Year" name="year" required minlength="4" maxlength="4" pattern="^(19|20)\d{2}$" #year="ngModel">
+              <div *ngIf="year.invalid && (year.dirty || year.touched)" class="error-message">
+                <div *ngIf="year.errors.required">
+                  Year is required.
+                </div>
+                <div *ngIf="year.errors.minlength || year.errors.maxlength">
+                  Year must be 4 characters long.
+                </div>
+                <div *ngIf="year.errors.pattern">
+                  Must be valid year from 1900 to 2099.
+                </div>
+              </div>
+            </label>
+            <label>
+              <span>Runtime</span>
+              <input type="text" [(ngModel)]="editMovie.Runtime" name="runtime" required #runtime="ngModel">
+              <div *ngIf="runtime.invalid && (runtime.dirty || runtime.touched)" class="error-message">
+                <div *ngIf="runtime.errors.required">
+                  Runtime is required.
+                </div>
+              </div>
+            </label>
+            <label>
+              <span>Genre</span>
+              <input type="text" [(ngModel)]="editMovie.Genre" name="genre" required #genre="ngModel">
+              <div *ngIf="genre.invalid && (genre.dirty || genre.touched)" class="error-message">
+                <div *ngIf="genre.errors.required">
+                  Genre is required.
+                </div>
+              </div>
+            </label>
+            <label>
+              <span>Director</span>
+              <input type="text" [(ngModel)]="editMovie.Director" name="director" required #director="ngModel">
+              <div *ngIf="director.invalid && (director.dirty || director.touched)" class="error-message">
+                <div *ngIf="director.errors.required">
+                  Director is required.
+                </div>
+              </div>
+            </label>
+      </div>
+      <div class="btns">
+        <button class="popup-save" (click)="save()" [disabled]="moviesForm.invalid" class="button button-primary">Confirm</button>
+        <button class="popup-cancel" (click)="cancel()" class="button button-primary">Cancel</button>
+      </div>
     </form>
-    <div class="btns">
-      <button class="popup-submit" (click)="submit()" class="button button-primary">Submit</button>
-      <button class="popup-cancel" (click)="cancel()" class="button button-primary">Cancel</button>
-    </div>
   </div>
 </div>

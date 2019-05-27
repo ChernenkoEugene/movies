@@ -13,7 +13,7 @@
     padding: 20px;
     border-radius: 6px;
     margin: auto;
-    max-width: 320px;
+    width: 320px;
 
     .popup-form {
       display: flex;
@@ -22,13 +22,29 @@
       label {
         padding-bottom: 15px;
         font-size: 18px;
+        display: flex;
+        flex-wrap: wrap;
 
         input {
           padding: 0 10px;
           margin-left: 15px;
-          border: 1px solid #000;
+          border: 2px solid #ddd;
           font-size: 16px;
           border-radius: 3px;
+          flex-grow: 1;
+
+          &:invalid {
+            border-color:#ba1313;
+          }
+        }
+
+        .error-message {
+          background: #e4abab;
+          margin-top: 12px;
+          color: #ba1313;
+          border-radius: 2px;
+          padding: 3px 10px;
+          width: 100%;
         }
       }
     }
@@ -54,6 +70,9 @@
       transition: all 0.5s ease;
       cursor: pointer;
 
+      &:disabled {
+        background-color: #ddd !important;
+      }
       &:hover {
         -webkit-transform: translateY(-1px);
         transform: translateY(-1px);

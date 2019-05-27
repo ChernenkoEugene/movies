@@ -11,7 +11,7 @@ import * as fromApi from './movies-api';
 import { environment } from '../../environments/environment';
 
 export interface State {
-  movies; // {}[]
+  movies;
 }
 
 export const reducers: ActionReducerMap<State> = {

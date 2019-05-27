@@ -17,6 +17,7 @@ import { AppEffects } from './app.effects';
 import { MoviesApiService } from './shared/services/movies-api.service';
 import { PopupComponent } from './components/popup/popup.component';
 import { AlphaNumPipe } from './shared/pipes/alpha-num-pipe.';
+import { TitlesValidatorDirective } from './shared/directives/titles-validator.directive';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AlphaNumPipe } from './shared/pipes/alpha-num-pipe.';
     MoviesComponent,
     PopupComponent,
     AlphaNumPipe,
+    TitlesValidatorDirective,
   ],
   imports: [
     BrowserModule,

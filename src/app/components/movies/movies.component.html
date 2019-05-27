@@ -30,5 +30,9 @@
   </ul>
 </div>
 
-<app-popup *ngIf="popup && popup.open" [editMovie]="editMovie" [popup]="popup" [popupTitle]="popupTitle">
+<app-popup *ngIf="popup && popup.open"
+  [editMovie]="editMovie"
+  [popup]="popup"
+  [popupTitle]="popupTitle"
+  [existingTitles]="existingTitles">
 </app-popup>
