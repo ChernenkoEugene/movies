@@ -1,5 +1,5 @@
 <div class="movies">
-  <button (click)="openPopup(mockMovie, PopupModes.ADD)" class="button button-primary">add</button>
+  <button (click)="openPopup(mockMovie, PopupModes.ADD)" class="button button-primary">add new movie</button>
   <ul class="movies-list">
     <li *ngFor="let movie of movies$ | async">
       <div class="movie-field">
