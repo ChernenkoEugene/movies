@@ -10,7 +10,6 @@ import { API_CONFIG } from './api-config';
   providedIn: 'root'
 })
 export class MoviesApiService {
-  // private moviesList = [];
 
   constructor(private http: HttpClient) { }
 
@@ -27,8 +26,8 @@ export class MoviesApiService {
 
  public async getMovieByTitle(movieTitle: string): Promise<{}> {
     const response = await this.http.get<{}>(this.buildRequestUrl(movieTitle))
-      .pipe(retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
+      .pipe(retry(3),
+        catchError(this.handleError)
       ).toPromise();
     return response as {};
   }
@@ -57,7 +56,6 @@ export class MoviesApiService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
-      // console.log(error)
     }
     // return an observable with a user-facing error message
     return throwError(
