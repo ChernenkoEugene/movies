@@ -31,7 +31,8 @@ export class PopupComponent implements OnInit {
   ngOnInit() {
   }
 
-  private save() {
+  private save(e) {
+    e.preventDefault();
     if (this.popup.mode === this.PopupModes.ADD) {
       this.addNewMovie(this.editMovie);
     }

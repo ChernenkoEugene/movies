@@ -67,7 +67,7 @@
             </label>
       </div>
       <div class="btns">
-        <button class="popup-save" (click)="save()" [disabled]="moviesForm.invalid" class="button button-primary">Confirm</button>
+        <button class="popup-save" (click)="save($event)" [disabled]="moviesForm.invalid" class="button button-primary">Confirm</button>
         <button class="popup-cancel" (click)="cancel()" class="button button-primary">Cancel</button>
       </div>
     </form>
