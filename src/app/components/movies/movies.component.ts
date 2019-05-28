@@ -17,26 +17,19 @@ const TITLE_KEY = 'Title';
 })
 export class MoviesComponent implements OnInit {
   private movies$: Observable<{}[]> = this.store.select(fromRoot.getMoviesState);
+  private movies: {}[] = [];
   private editMovie: {};
   private popup: Popup;
   private popupTitle: string;
   private PopupModes = PopupModes;
   private mockMovie = mockMovie;
   private moviesSubscription: Subscription;
-  private existingTitles: string[] = [];
 
   constructor(public store: Store<fromRoot.State>) {}
 
   ngOnInit() {
     this.store.dispatch(new MoviesApi.RequestMovies());
-    this.moviesSubscription = this.movies$.subscribe(movies => this.updateExistingTitles(movies));
-  }
-
-  private updateExistingTitles(movies: {}[]) {
-    this.existingTitles = [];
-    movies.forEach((value) => {
-      this.existingTitles.push(value[TITLE_KEY]);
-    });
+    this.moviesSubscription = this.movies$.subscribe(movies => this.movies = movies);
   }
 
   private openPopup(movie: {}, mode) {

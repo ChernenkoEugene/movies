@@ -18,13 +18,13 @@ export class PopupComponent implements OnInit {
   editMovie: {};
 
   @Input()
+  movies: {};
+
+  @Input()
   popup: Popup;
 
   @Input()
   popupTitle: string;
-
-  @Input()
-  existingTitles: [];
 
   constructor(public store: Store<fromRoot.State>) {}
 

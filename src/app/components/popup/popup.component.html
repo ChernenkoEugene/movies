@@ -5,7 +5,15 @@
       <div class="form-wrp" *ngIf="popup.mode == PopupModes.ADD || popup.mode == PopupModes.EDIT">
           <label>
               <span>Title</span>
-              <input type="text" [(ngModel)]="editMovie.Title" name="title" [appTitlesValidator]="existingTitles" required #title="ngModel">
+              <input
+              type="text"
+              [(ngModel)]="editMovie.Title"
+              name="title"
+              [appTitlesValidator]="movies"
+              [editMovie]="editMovie"
+              required
+              #title="ngModel">
+
               <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error-message">
                 <div *ngIf="title.errors.required">
                   Title is required.
