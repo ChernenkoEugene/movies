@@ -13,7 +13,8 @@ export class TitlesValidatorDirective implements Validator {
   @Input('appTitlesValidator') titles: string[];
 
   validate(control: FormControl) {
-    const hasTitle = this.titles.indexOf(control.value) > -1;
+    const value = control.value ? control.value.trim() : '';
+    const hasTitle = this.titles.indexOf(value) > -1;
 
     return hasTitle
       ? { duplicateTitles: true }
