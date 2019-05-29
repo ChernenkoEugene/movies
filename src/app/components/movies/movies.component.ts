@@ -15,7 +15,7 @@ const TITLE_KEY = 'Title';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
   private movies$: Observable<{}[]> = this.store.select(fromRoot.getMoviesState);
   private movies: {}[] = [];
   private editMovie: {};
@@ -44,7 +44,7 @@ export class MoviesComponent implements OnInit {
     this.popup.open = false;
   }
 
-  OnDestroy() {
+  ngOnDestroy() {
     this.moviesSubscription.unsubscribe();
   }
 }
